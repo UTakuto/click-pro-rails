@@ -1,4 +1,4 @@
-<!-- # 🚀 Rails API Template with Docker
+# 🚀 Rails API Template with Docker
 
 ## このリポジトリは、Docker 環境上で Ruby on Rails（API モード）を素早く立ち上げるためのテンプレートです。
 
@@ -31,37 +31,30 @@
 ### 1. リポジトリをクローン
 
 ```bash
-git clone https://github.com/UTakuto/rails-template.git
-cd rails-template
+git clone https://github.com/UTakuto/rails-api-template.git
+cd rails-api-template
 ```
 
-### 2. service ディレクトリ内で Rails API アプリを作成（初回のみ）
+### 2. `.env` を編集（必要に応じて）
 
-```bash
-docker compose run web rails new . --api --database=mysql
+```env
+MYSQL_ROOT_PASSWORD=your_password
+MYSQL_DATABASE=your_db_name
+MYSQL_USER=your_user
+MYSQL_PASSWORD=your_password
 ```
 
-### 3. Gem をインストール
+### 3. Docker で環境構築
 
 ```bash
-docker compose run web bundle install
+docker compose build
+docker compose up -d
 ```
 
-### 4. データベース設定の確認
-
-`.env` または `config/database.yml` を編集して、`host: db` になっていることを確認。
-
-### 5. DB 作成とマイグレーション
+### 4. コンテナに入って Rails 初期化
 
 ```bash
-docker compose run web rails db:create
-docker compose run web rails db:migrate
-```
-
-### 6. サーバ起動
-
-```bash
-docker compose up
+docker compose exec web rails db:create db:migrate
 ```
 
 ---
@@ -77,4 +70,4 @@ docker compose up
 
 -   フロントエンド（Next.js など）と組み合わせて使用することを想定しています。
 -   必要に応じて `CORS`, `Serializer`, `認証ライブラリ` を追加してください。
-    """ -->
+    """
