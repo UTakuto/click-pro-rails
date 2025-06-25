@@ -6,5 +6,8 @@ class CreateLikes < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    # ★ ユーザー×写真の組み合わせをユニークにする
+    add_index :likes, [:user_id, :photo_id], unique: true
   end
 end
